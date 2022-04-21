@@ -12,11 +12,18 @@ def stopInstance(ins):
 def isTagUpdated(instance) -> bool:
     for tag in instance.tags:
 
-        if "testing_tag" in tag["Key"]:
-            testingTag=tag.get("Value","") 
+        if "environment" in tag["Key"]:
+            env=tag.get("Value","") 
 
-    if not testingTag:
+        if "Name" in tag["Key"]:
+            name=tag.get("Value","")     
+
+    if env+name == "":
         return False
+    elif not env:
+        return False
+    elif not name:
+        return False        
 
     return True    
 
